@@ -1,0 +1,56 @@
+body {
+    font-family: "Libre Caslon Text";
+}
+header {
+    font-family: "Libre Caslon Text";
+    text-align: center;
+}
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    color: hsl(0, 0%, 20%);
+}
+.container {
+    margin: 5vw 20vw 5vw 20vw;
+    display: flex;
+}
+.hire {
+    background-color: hsl(0, 2%, 88%);
+    border-radius: 15px;
+    padding: 40px;
+    width: 60%;
+}
+.hire-header {
+    font-size: 3rem;
+    text-align: center;
+    font-family: Inter;
+    font-weight: bolder;
+    margin: 35px 0;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+.hire-text{
+    margin: 0 15px;
+}
+.hire-button{
+    background-color: black;
+    color: white;
+    margin-top: 35px;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-family: Inter;
+}
+.hire-button:hover{
+    background-color: hsl(0, 0%, 20%);
+    cursor: pointer;
+}
+.container img {
+    width: 40%;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}

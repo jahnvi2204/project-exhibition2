@@ -6,7 +6,9 @@ import Navbar from './navbar.jsx';
 import './profile-styles.css';
 
 function Profile() {
+    const [invalid, setInvalid] = useState('');
     const [phoneNo, setPhoneNo] = useState('');
+    const [name, setName] = useState('');
     const [city, setCity] = useState('');
     const [selectedField, setSelectedField] = useState('');
     const [education, setEducation] = useState('');
@@ -20,10 +22,42 @@ function Profile() {
     const [skills, setSkills] = useState('');
     const [portfolioLink, setPortfolioLink] = useState('');
     const [accomplishments, setAccomplishments] = useState('');
+    let { username } = useParams();
 
-    const handleSubmit = () => {
-        // Handle form submission here
-        console.log('Form submitted!');
+    const navigate = useNavigate();
+
+    const handleSubmit = async() => {
+        await axios
+        .post(`http://localhost:5555/profile`, {"profile":{
+            'username': username,
+            'name': name,
+            'phoneNumber': phoneNo,
+            'city': city,
+            'field': selectedField,
+            'education': education,
+            'collegeCGPA': collegeCGPA,
+            '_12thPercentage': twelfthPercentage,
+            'workExperience1': workExp1,
+            'workExperienceYears1': workExpYears1,
+            'workExperience2': workExp2,
+            'workExperienceYears2': workExpYears2,
+            'projects': projects,
+            'skills': skills,
+            'portfolioLink': portfolioLink,
+            'accomplishments': accomplishments}
+        })
+        .then((res) => {
+            navigate('/');
+            console.log(res);
+            setInvalid("");
+        })
+        .catch((error) => {
+            if(error.response){
+                setInvalid(error.response.data.message);
+            }
+            
+            console.log(error.message);
+        })
     };
 
     return (
@@ -32,6 +66,9 @@ function Profile() {
             <div className="container">
                 <div className="profile">
                     <div className="profile-header">Profile</div>
+                    <div className="profile-input">
+                        <input placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    </div>
                     <div className="profile-input">
                         <input placeholder="Enter Phone No." value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} />
                     </div>
@@ -97,6 +134,7 @@ function Profile() {
                     <div className="profile-button">
                         <button onClick={handleSubmit}>Submit</button>
                     </div>
+                    <span className='invalid'>{invalid}</span>
                 </div>
             </div>
         </>

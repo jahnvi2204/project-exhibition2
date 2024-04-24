@@ -8,7 +8,7 @@ const router = express.Router();
 router.post ('/', async (req, res) => {
     try {
         const newProfile = {username: req.body.profile.username,
-                            userid: req.body.profile.userid,
+                            name: req.body.profile.name,
                             phoneNumber: req.body.profile.phoneNumber,
                             city: req.body.profile.city,
                             field: req.body.profile.field,

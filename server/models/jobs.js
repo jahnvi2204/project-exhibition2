@@ -6,6 +6,10 @@ const jobsSchema = mongoose.Schema(
             type: String,
             required : true,
         },
+        employerUsername: {
+            type: String,
+            required : true,
+        },
         companyName: {
             type : String,
             required : true,
@@ -27,10 +31,6 @@ const jobsSchema = mongoose.Schema(
             required : true,
         },
         startDate: {
-            type : Date,
-            required : true,
-        },
-        endDate: {
             type : Date,
             required : true,
         },

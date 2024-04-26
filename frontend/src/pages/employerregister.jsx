@@ -5,7 +5,7 @@ import { useNavigate,useParams,Link } from 'react-router-dom';
 import './login_styles.css'
 import Navbar from './navbar.jsx';
 
-function EmployeeRegister() {
+function EmployerRegister() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [invalid, setInvalid] = useState('');
@@ -13,15 +13,15 @@ function EmployeeRegister() {
 
     const handleRegister = async () => {
         await axios
-        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
+        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employer"})
         .then((res) => {
             setInvalid('');
             // navigate('/create');
-            navigate('/employeelogin');
+            navigate('/employerlogin');
             console.log(res);
             var token = res.data.accessToken;
             localStorage.setItem('accessToken', token);
-            localStorage.setItem('userType', "employee");
+            localStorage.setItem('userType', "employer");
         })
         .catch((error) => {
             setInvalid(error.response.data.message);
@@ -44,7 +44,7 @@ function EmployeeRegister() {
         
         <div class="container">
             <div class="login">
-                <div class="login-header">Employee Register</div>
+                <div class="login-header">Employer Register</div>
                 <div class="login-input">
                     <input
                         type="text"
@@ -73,4 +73,4 @@ function EmployeeRegister() {
     );
 }
 
-export default EmployeeRegister;
+export default EmployerRegister;

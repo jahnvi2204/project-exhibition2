@@ -17,3 +17,15 @@ a {
 a:hover {
   color: rgb(67, 63, 101);
 }
+
+.none{
+  appearance: none;
+    border: none;
+    margin: none;
+    padding: none;
+    background: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}

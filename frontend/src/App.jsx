@@ -6,10 +6,11 @@ import EmployerRegister from './pages/employerregister.jsx';
 import Profile from './pages/profile.jsx';
 import JobPost from './pages/jobPost.jsx';
 import Jobs from './pages/jobs.jsx';
+import Applicants from './pages/applicants.jsx';
 import Job from './pages/job.jsx';
 import {Routes, Route} from 'react-router-dom';
 
-Jobs
+
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path='/profile/:username' element={<Profile />} />
       <Route path='/jobpost/:username' element={<JobPost />} />
       <Route path='/jobs/:username' element={<Jobs />} />
+      <Route path='/applicants/:username' element={<Applicants />} />
       <Route path='/job/:username/:id' element={<Job />} />
     </Routes>
   )

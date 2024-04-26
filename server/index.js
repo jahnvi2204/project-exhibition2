@@ -11,6 +11,8 @@ import employeeAuthRoute from './routes/employeeAuthRoute.js';
 import profileRoute from './routes/profileRoute.js';
 import jobRoute from './routes/jobRoute.js';
 import algoRoute from './routes/algorithmRoute.js';
+import applicationRoute from './routes/applicationRoute.js';
+
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 
@@ -42,6 +44,8 @@ app.use('/profile', profileRoute);
 app.use('/job', jobRoute);
 
 app.use('/algo', algoRoute);
+
+app.use('/application', applicationRoute);
 
 app.get('/', (req, res) => {
     console.log(req);

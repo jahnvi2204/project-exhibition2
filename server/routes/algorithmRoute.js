@@ -4,11 +4,11 @@ import { Profiles } from '../models/profiles.js';
 
 const router = express.Router();
 
-router.get('/jobs/:userid', async (req, res) => {
+router.get('/jobs/:username', async (req, res) => {
     try {
-        const { userid } = req.params;
+        const { username } = req.params;
 
-        const userProfile = await Profiles.findOne({ "userid": userid });
+        const userProfile = await Profiles.findOne({ "username": username });
 
         if (!userProfile) {
             return res.status(404).json({ message: 'User profile not found' });
@@ -16,7 +16,7 @@ router.get('/jobs/:userid', async (req, res) => {
 
         const totalWorkExperience = userProfile.workExperienceYears1 + userProfile.workExperienceYears2;
 
-        const filteredJobs = await Jobs.find({ "workExperience": { $lte: totalWorkExperience } })
+        const filteredJobs = await Jobs.find({ "workExperience": { $lte: totalWorkExperience }, "jobPosition": userProfile.field })
                                        .sort({ "salary": -1 })
                                        .limit(5); 
 

@@ -13,7 +13,7 @@ function EmployeeRegister() {
 
     const handleRegister = async () => {
         await axios
-        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password})
+        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
         .then((res) => {
             setInvalid('');
             // navigate('/create');
@@ -21,6 +21,7 @@ function EmployeeRegister() {
             console.log(res);
             var token = res.data.accessToken;
             localStorage.setItem('accessToken', token);
+            localStorage.setItem('userType', "employee");
         })
         .catch((error) => {
             setInvalid(error.response.data.message);

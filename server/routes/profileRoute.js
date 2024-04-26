@@ -9,6 +9,7 @@ router.post ('/', async (req, res) => {
     try {
         const newProfile = {username: req.body.profile.username,
                             name: req.body.profile.name,
+                            email: req.body.profile.email,
                             phoneNumber: req.body.profile.phoneNumber,
                             city: req.body.profile.city,
                             field: req.body.profile.field,

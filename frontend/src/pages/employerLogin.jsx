@@ -5,23 +5,22 @@ import { useNavigate,useParams,Link } from 'react-router-dom';
 import './login_styles.css'
 import Navbar from './navbar.jsx';
 
-function EmployeeRegister() {
+function EmployerLogin() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [invalid, setInvalid] = useState('');
     const navigate = useNavigate();
 
-    const handleRegister = async () => {
+    const handleLogin = async () => {
         await axios
-        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
+        .post(`http://localhost:5555/employeeauth/login`, {"username" : username, "password" : password, "userType": "employer"})
         .then((res) => {
             setInvalid('');
-            // navigate('/create');
-            navigate('/employeelogin');
+            navigate(`/`);
             console.log(res);
             var token = res.data.accessToken;
             localStorage.setItem('accessToken', token);
-            localStorage.setItem('userType', "employee");
+            localStorage.setItem('userType', "employer");
         })
         .catch((error) => {
             setInvalid(error.response.data.message);
@@ -44,7 +43,7 @@ function EmployeeRegister() {
         
         <div class="container">
             <div class="login">
-                <div class="login-header">Employee Register</div>
+                <div class="login-header">Employer Login</div>
                 <div class="login-input">
                     <input
                         type="text"
@@ -62,15 +61,15 @@ function EmployeeRegister() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div class="login-button"><button onClick={handleRegister}>Register</button></div>
+                <div class="login-button"><button onClick={handleLogin}>Login</button></div>
                 <span className='invalid'>{invalid}</span>
                 <hr/>
-                <span className='login-text'>Already have an account?</span>
-                <Link to='/employeelogin'><button className='register'>Login</button></Link>
+                <span className='login-text'>Don't have an account?</span>
+                <Link to='/employerregister'><button className='register'>Register</button></Link>
             </div>
         </div>
       </>
     );
 }
 
-export default EmployeeRegister;
+export default EmployerLogin;

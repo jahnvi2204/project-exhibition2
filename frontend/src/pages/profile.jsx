@@ -9,6 +9,7 @@ function Profile() {
     const [invalid, setInvalid] = useState('');
     const [phoneNo, setPhoneNo] = useState('');
     const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [selectedField, setSelectedField] = useState('');
     const [education, setEducation] = useState('');
@@ -31,6 +32,7 @@ function Profile() {
         .post(`http://localhost:5555/profile`, {"profile":{
             'username': username,
             'name': name,
+            'email': email,
             'phoneNumber': phoneNo,
             'city': city,
             'field': selectedField,
@@ -68,6 +70,9 @@ function Profile() {
                     <div className="profile-header">Profile</div>
                     <div className="profile-input">
                         <input placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    </div>
+                    <div className="profile-input">
+                        <input placeholder="Enter E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="profile-input">
                         <input placeholder="Enter Phone No." value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} />

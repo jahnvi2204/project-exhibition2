@@ -46,7 +46,7 @@ function Navbar() {
             <nav className="navbar">
               <Link to={"/"}> <a><i className="fa-sharp fa-solid fa-house"></i> &nbsp; Home</a></Link>
               <Link to={"/employeelogin"}><a><i className="fa-solid fa-user"></i> &nbsp; Employee Login</a></Link>
-              <Link to={"/employeelogin"}><a><i className="fa-solid fa-user"></i> &nbsp; Employer Login</a></Link>
+              <Link to={"/employerlogin"}><a><i className="fa-solid fa-user"></i> &nbsp; Employer Login</a></Link>
             </nav>
           </>
           ) : (

@@ -12,6 +12,11 @@ const employeeSchema = mongoose.Schema(
             required: [true, "Please provide a password"],
             unique : false,
         },
+        userType: {
+            type: String,
+            required: [true, "Please provide a userType"],
+            unique : false,
+        },
     },
     {
         timestamps : true,

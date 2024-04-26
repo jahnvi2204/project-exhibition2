@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.post('/login', async(req, res) => {
 
-    const { username, password } = req.body;
-    const user = await employees.findOne({"username" : username , "password" : password});
+    const { username, password, userType } = req.body;
+    const user = await employees.findOne({"username" : username , "password" : password, "userType" : userType});
     console.log(user);
     if (!user) {
         return res.status(401).send({ message: 'Invalid username or password' });
@@ -16,7 +16,8 @@ router.post('/login', async(req, res) => {
 
     const payload = {
         id: user._id, 
-        username: user.username 
+        username: user.username,
+        userType: user.userType
     };
 
     const accessToken = generateAccessToken(payload);
@@ -28,10 +29,10 @@ router.post('/login', async(req, res) => {
 router.post('/register', async(req, res) => {
     
     try {
-        if (!req.body.username || !req.body.password){
+        if (!req.body.username || !req.body.password || !req.body.userType){
             return res.status(500).send({message: `send all required feilds` })
         }
-        const { username, password } = req.body;
+        const { username, password, userType } = req.body;
         const existingUser = await employees.findOne({ username: username });
         if (existingUser) {
             return res.status(400).json({ message: 'Username already exists' });
@@ -39,7 +40,8 @@ router.post('/register', async(req, res) => {
 
         const newUser = {
             username: username,
-            password: password
+            password: password,
+            userType: userType
         };
         const user = await employees.create(newUser);
         return res.status(201).send(user);

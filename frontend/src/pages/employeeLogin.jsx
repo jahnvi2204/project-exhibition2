@@ -13,13 +13,14 @@ function EmployeeLogin() {
 
     const handleLogin = async () => {
         await axios
-        .post(`http://localhost:5555/employeeauth/login`, {"username" : username, "password" : password})
+        .post(`http://localhost:5555/employeeauth/login`, {"username" : username, "password" : password, "userType": "employee"})
         .then((res) => {
             setInvalid('');
             navigate(`/profile/${username}`);
             console.log(res);
             var token = res.data.accessToken;
             localStorage.setItem('accessToken', token);
+            localStorage.setItem('userType', "employee");
         })
         .catch((error) => {
             setInvalid(error.response.data.message);

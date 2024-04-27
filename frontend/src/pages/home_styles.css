@@ -11,7 +11,7 @@ h1 {
 h2 {
     color: hsl(0, 0%, 20%);
 }
-.container {
+.container1,.container2 {
     margin: 5vw 20vw 5vw 20vw;
     display: flex;
 }
@@ -48,8 +48,14 @@ h2 {
     background-color: hsl(0, 0%, 20%);
     cursor: pointer;
 }
-.container img {
-    width: 40%;
+.image1 {
+    width: 48%;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.image2 {
+    width: 50%;
     border-radius: 15px;
     margin-left: 15px;
     margin-right: 15px;

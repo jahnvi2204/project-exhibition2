@@ -43,6 +43,9 @@ function Applicants() {
                         // setList((l) => [...l, blog.blog]);
                     });
                     setLoading("");
+                    if(list.length == 0){
+                        setLoading("No applicants at the moment.");
+                    }
                     console.log(list);
                 } catch (error) {
                     console.log(error, "try block error");

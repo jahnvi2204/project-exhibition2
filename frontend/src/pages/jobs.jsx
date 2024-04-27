@@ -21,7 +21,8 @@ function Jobs() {
                     res.data.data.forEach((job) => {
                         setList((l) => [...l, {
                             _id: job._id,
-                            jobPosition: job.jobPosition,                             
+                            jobPosition: job.jobPosition, 
+                            employerUsername: job.employerUsername,                            
                             companyName: job.companyName, 
                             city: job.city,
                             salary: job.salary,                            
@@ -34,7 +35,10 @@ function Jobs() {
                         // setList((l) => [...l, blog.blog]);
                     });
                     setLoading("");
-                    console.log(list[0].companyName);
+                    if(list.length == 0){
+                        setLoading("No jobs match your profile at the moment.");
+                    }
+                    console.log(list.length);
                 } catch (error) {
                     console.log(error, "try block error");
                 }

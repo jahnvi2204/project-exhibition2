@@ -67,12 +67,12 @@ router.get('/:username',async (req, res) => {
     }
 });
 
-router.put('/:userid', async (req, res) => {
+router.put('/:username', async (req, res) => {
     try {
-        const { userid } = req.params;
+        const { username } = req.params;
         const updatedFields = req.body; 
         
-        const result = await Profiles.updateOne({ "userid": userid }, { $set: updatedFields });
+        const result = await Profiles.updateOne({ "username": username }, { $set: updatedFields });
 
         if (!result) {
             return res.status(404).json({ message: 'Profile not found' });

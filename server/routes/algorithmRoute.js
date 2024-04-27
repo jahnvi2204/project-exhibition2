@@ -141,7 +141,7 @@ router.get('/applicants/:username', async (req, res) => {
 
         const job = await Jobs.findOne({"employerUsername": username});    
 
-        const jobid = job._id;
+        const jobid = job.employerUsername;
 
         if (!job) {
             return res.status(404).json({ message: 'Job not found' });

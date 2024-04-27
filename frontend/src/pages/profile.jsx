@@ -7,6 +7,7 @@ import './profile-styles.css';
 
 function Profile() {
     const [invalid, setInvalid] = useState('');
+    const [loading, setLoading] = useState('loading');
     const [phoneNo, setPhoneNo] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -27,9 +28,38 @@ function Profile() {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`http://localhost:5555/profile/${username}`);
+                setName(res.data.profile.name);
+                setPhoneNo(res.data.profile.phoneNumber);
+                setEmail(res.data.profile.email);
+                setCity(res.data.profile.city);
+                setSelectedField(res.data.profile.field);
+                setEducation(res.data.profile.education);
+                setCollegeCGPA(res.data.profile.collegeCGPA);
+                setTwelfthPercentage(res.data.profile._12thPercentage);
+                setWorkExp1(res.data.profile.workExperience1);
+                setWorkExpYears1(res.data.profile.workExperienceYears1);
+                setWorkExp2(res.data.profile.workExperience2);
+                setWorkExpYears2(res.data.profile.workExperienceYears2);
+                setProjects(res.data.profile.projects);
+                setSkills(res.data.profile.skills);
+                setPortfolioLink(res.data.profile.portfolioLink);
+                setAccomplishments(res.data.profile.accomplishments);   
+                setLoading("");
+            } catch (error) {
+                console.log(error, "try block error");
+            }
+        }
+
+        fetchData();
+    }, []);
+
     const handleSubmit = async() => {
         await axios
-        .post(`http://localhost:5555/profile`, {"profile":{
+        .put(`http://localhost:5555/profile/${username}`, {
             'username': username,
             'name': name,
             'email': email,
@@ -46,7 +76,7 @@ function Profile() {
             'projects': projects,
             'skills': skills,
             'portfolioLink': portfolioLink,
-            'accomplishments': accomplishments}
+            'accomplishments': accomplishments
         })
         .then((res) => {
             navigate('/');
@@ -65,7 +95,9 @@ function Profile() {
     return (
         <>
             <Navbar />
-            <div className="container">
+            {loading != "loading" ? (
+                <>
+                <div className="container">
                 <div className="profile">
                     <div className="profile-header">Profile</div>
                     <div className="profile-input">
@@ -75,7 +107,7 @@ function Profile() {
                         <input placeholder="Enter E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="profile-input">
-                        <input placeholder="Enter Phone No." value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} />
+                        <input type='number' placeholder="Enter Phone No." value={phoneNo} onChange={(e) => setPhoneNo(e.target.value)} />
                     </div>
                     <div className="profile-input">
                         <input placeholder="Enter City" value={city} onChange={(e) => setCity(e.target.value)} />
@@ -107,22 +139,22 @@ function Profile() {
                         <input placeholder="Enter Education" value={education} onChange={(e) => setEducation(e.target.value)} />
                     </div>
                     <div className="profile-input">
-                        <input placeholder="Enter College CGPA" value={collegeCGPA} onChange={(e) => setCollegeCGPA(e.target.value)} />
+                        <input type='number' placeholder="Enter College CGPA" value={collegeCGPA} onChange={(e) => setCollegeCGPA(e.target.value)} />
                     </div>
                     <div className="profile-input">
-                        <input placeholder="Enter 12th percentage" value={twelfthPercentage} onChange={(e) => setTwelfthPercentage(e.target.value)} />
+                        <input type='number' placeholder="Enter 12th percentage" value={twelfthPercentage} onChange={(e) => setTwelfthPercentage(e.target.value)} />
                     </div>
                     <div className="profile-input">
                         <input placeholder="Enter Work Experience1(leave blank if none)" value={workExp1} onChange={(e) => setWorkExp1(e.target.value)} />
                     </div>
                     <div className="profile-input">
-                        <input placeholder="Enter Work Experience Years1(leave blank if none)" value={workExpYears1} onChange={(e) => setWorkExpYears1(e.target.value)} />
+                        <input type='number' placeholder="Enter Work Experience Years1(leave blank if none)" value={workExpYears1} onChange={(e) => setWorkExpYears1(e.target.value)} />
                     </div>
                     <div className="profile-input">
                         <input placeholder="Enter Work Experience2(leave blank if none)" value={workExp2} onChange={(e) => setWorkExp2(e.target.value)} />
                     </div>
                     <div className="profile-input">
-                        <input placeholder="Enter Work Experience Years2(leave blank if none)" value={workExpYears2} onChange={(e) => setWorkExpYears2(e.target.value)} />
+                        <input type='number' placeholder="Enter Work Experience Years2(leave blank if none)" value={workExpYears2} onChange={(e) => setWorkExpYears2(e.target.value)} />
                     </div>
                     <div className="profile-input">
                         <input placeholder="Enter Academics/ Personal Projects " value={projects} onChange={(e) => setProjects(e.target.value)} />
@@ -142,6 +174,12 @@ function Profile() {
                     <span className='invalid'>{invalid}</span>
                 </div>
             </div>
+                </>
+            ) : (
+                <>
+                loading
+                </>
+            )}
         </>
     );
 }

@@ -7,6 +7,7 @@ import Profile from './pages/profile.jsx';
 import JobPost from './pages/jobPost.jsx';
 import Jobs from './pages/jobs.jsx';
 import Applicants from './pages/applicants.jsx';
+import Applicant from './pages/applicant.jsx';
 import Job from './pages/job.jsx';
 import {Routes, Route} from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function App() {
       <Route path='/jobpost/:username' element={<JobPost />} />
       <Route path='/jobs/:username' element={<Jobs />} />
       <Route path='/applicants/:username' element={<Applicants />} />
+      <Route path='/applicant/:username' element={<Applicant />} />
       <Route path='/job/:username/:id' element={<Job />} />
     </Routes>
   )

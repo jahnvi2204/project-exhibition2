@@ -17,8 +17,10 @@ function ApplicantListing(props) {
           </div>
           <div className="details"></div>
           <div className="actions">
-            <h3>{props.employee.education}</h3>
-            <a href={`/job/${props.username}/${props.employee._id}`}>View details</a>
+            <h3>Total Work Experience: {props.employee.workExperienceYears1 + props.employee.workExperienceYears2} years</h3>
+            <h3>Education: {props.employee.education}</h3>
+            <h3>College GPA: {props.employee.collegeCGPA}</h3>
+            <a href={`/applicant/${props.employee.username}`}>View details</a>
           </div>
         </div>
       </>

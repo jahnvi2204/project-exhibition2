@@ -33,11 +33,11 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:username', async (req, res) => {
     try {
-        const { id } = req.params;
+        const { username } = req.params;
 
-        const jobProfile = await Jobs.findById(id);
+        const jobProfile = await Jobs.findOne({"employerUsername":username});
 
         if (!jobProfile) {
             return res.status(404).json({ message: 'Job profile not found' });
@@ -50,12 +50,11 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:username', async (req, res) => {
     try {
-        const { id } = req.params;
+        const { username } = req.params;
         const updatedFields = req.body;
-
-        const updatedProfile = await Jobs.findByIdAndUpdate(id, updatedFields, { new: true });
+        const updatedProfile = await Jobs.updateOne({ "employerUsername": username }, { $set: updatedFields });
 
         if (!updatedProfile) {
             return res.status(404).json({ message: 'Job profile not found' });

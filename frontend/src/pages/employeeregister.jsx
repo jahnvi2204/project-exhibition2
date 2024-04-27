@@ -11,24 +11,51 @@ function EmployeeRegister() {
     const [invalid, setInvalid] = useState('');
     const navigate = useNavigate();
 
+    // const handleRegister = async () => {
+    //     await axios
+    //     .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
+    //     .then((res) => {
+    //         setInvalid('');
+    //         // navigate('/create');
+    //         navigate('/employeelogin');
+    //         console.log(res);
+    //         var token = res.data.accessToken;
+    //         localStorage.setItem('accessToken', token);
+    //         localStorage.setItem('userType', "employee");
+    //     })
+    //     .catch((error) => {
+    //         setInvalid(error.response.data.message);
+    //         console.log(error.message);
+    //     })
+    // };
+
     const handleRegister = async () => {
         await axios
-        .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
-        .then((res) => {
-            setInvalid('');
-            // navigate('/create');
-            navigate('/employeelogin');
-            console.log(res);
-            var token = res.data.accessToken;
-            localStorage.setItem('accessToken', token);
-            localStorage.setItem('userType', "employee");
-        })
-        .catch((error) => {
-            setInvalid(error.response.data.message);
-            console.log(error.message);
-        })
+            .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employee"})
+            .then(async (res) => {
+                setInvalid('');
+                
+                console.log(res);
+                var token = res.data.accessToken;
+                localStorage.setItem('accessToken', token);
+                localStorage.setItem('userType', "employee");
+    
+                try {
+                    console.log("username:",username);
+                    const profileRes = await axios.post(`http://localhost:5555/profile/`, {"profile": {"username": username}});
+                    console.log(profileRes);
+                    navigate('/employeelogin');
+                } catch (profileError) {
+                    setInvalid(profileError.response.data.message);
+                    console.error("Error creating profile:", profileError);
+                }
+            })
+            .catch((error) => {
+                setInvalid(error.response.data.message);
+                console.log(error.message);
+            });
     };
-
+    
 
     return (
       <>

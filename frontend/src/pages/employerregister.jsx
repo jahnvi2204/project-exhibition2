@@ -14,14 +14,23 @@ function EmployerRegister() {
     const handleRegister = async () => {
         await axios
         .post(`http://localhost:5555/employeeauth/register`, {"username" : username, "password" : password, "userType": "employer"})
-        .then((res) => {
+        .then(async (res) => {
             setInvalid('');
             // navigate('/create');
-            navigate('/employerlogin');
             console.log(res);
             var token = res.data.accessToken;
             localStorage.setItem('accessToken', token);
             localStorage.setItem('userType', "employer");
+
+            try {
+                console.log("username:",username);
+                const profileRes = await axios.post(`http://localhost:5555/job/`, {"employerUsername": username});
+                console.log(profileRes);
+                navigate('/employerlogin');
+            } catch (profileError) {
+                setInvalid(profileError.response.data.message);
+                console.error("Error creating profile:", profileError);
+            }
         })
         .catch((error) => {
             setInvalid(error.response.data.message);

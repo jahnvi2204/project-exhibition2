@@ -8,35 +8,27 @@ const profileSchema = mongoose.Schema(
         },
         name: {
             type: String,
-            required : true,
         },
         email: {
             type: String,
-            required : true,
         },
         phoneNumber: {
             type : Number,
-            required : true,
         },
         city: {
             type : String,
-            required : true,
         },
         field: {
             type : String,
-            required : true,
         },
         education: {
             type : String,
-            required : true,
         },
         collegeCGPA: {
             type : Number,
-            required : true,
         },
         _12thPercentage: {
             type : Number,
-            required : true,
         },
         workExperience1: {
             type : String,
@@ -52,19 +44,15 @@ const profileSchema = mongoose.Schema(
         },
         projects: {
             type : String,
-            required : true,
         },
         skills: {
             type : String,
-            required : true,
         },
         portfolioLink: {
             type : String,
-            required : true,
         },
         accomplishments: {
             type : String,
-            required : true,
         },
     },
     {

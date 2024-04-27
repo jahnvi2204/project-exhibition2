@@ -51,16 +51,15 @@ router.delete ('/:userid', async (req, res) => {
     }
 });
 
-router.get('/:userid',async (req, res) => {
+router.get('/:username',async (req, res) => {
     try {
 
-        const { userid } = req.params;
+        const { username } = req.params;
 
-        const profiles = await Profiles.find({"userid" : userid }).sort({ "index": 1 });
-
+        const profiles = await Profiles.find({"username" : username }).sort({ "createdAt": -1 });
+        const profile = profiles[0];
         return res.status(200).json({
-            length : profiles.length,
-            data: profiles
+            profile
         });
     }catch {
         console.log(error.message);
@@ -68,12 +67,12 @@ router.get('/:userid',async (req, res) => {
     }
 });
 
-router.put('/:userid', async (req, res) => {
+router.put('/:username', async (req, res) => {
     try {
-        const { userid } = req.params;
+        const { username } = req.params;
         const updatedFields = req.body; 
         
-        const result = await Profiles.updateOne({ "userid": userid }, { $set: updatedFields });
+        const result = await Profiles.updateOne({ "username": username }, { $set: updatedFields });
 
         if (!result) {
             return res.status(404).json({ message: 'Profile not found' });

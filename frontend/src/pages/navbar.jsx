@@ -64,8 +64,8 @@ function Navbar() {
                   <> 
                     <nav className="navbar">
                       <Link to={"/"}> <a><i className="fa-sharp fa-solid fa-house"></i> &nbsp; Home</a></Link>
-                      <Link to={`/profile/${username}`}><a><i className="fa-solid fa-user"></i> &nbsp; Applicants</a></Link>
-                      <Link to={`/jobs/${username}`}><a><i className="fa-solid fa-book-open-reader"></i> &nbsp; Job Post</a></Link>
+                      <Link to={`/applicants/${username}`}><a><i className="fa-solid fa-user"></i> &nbsp; Applicants</a></Link>
+                      <Link to={`/jobpost/${username}`}><a><i className="fa-solid fa-book-open-reader"></i> &nbsp; Job Post</a></Link>
                       <button onClick={handleLogout} className='none'><a><i className="fa-solid fa-user"></i> &nbsp; Logout</a></button>
                     </nav>
                   </>

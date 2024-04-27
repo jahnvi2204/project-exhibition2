@@ -42,9 +42,9 @@ function EmployerLogin() {
         </header>
         
         <div class="container">
-            <div class="login">
-                <div class="login-header">Employer Login</div>
-                <div class="login-input">
+            <div className="login">
+                <div className="login-header">Employer Login</div>
+                <div className="login-input">
                     <input
                         type="text"
                         placeholder="Enter username"
@@ -52,7 +52,7 @@ function EmployerLogin() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
-                <div class="login-input">
+                <div className="login-input">
                     <input
                         className='pass'
                         type="password"
@@ -61,7 +61,12 @@ function EmployerLogin() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div class="login-button"><button onClick={handleLogin}>Login</button></div>
+                {<div className="login-button">
+                    {
+                        <button onClick={handleLogin}>Login</button>
+                    }
+                    </div> 
+                }
                 <span className='invalid'>{invalid}</span>
                 <hr/>
                 <span className='login-text'>Don't have an account?</span>

@@ -21,8 +21,7 @@ function Home() {
             Welcome to Hire Harbor
         </h2>
         </header>
-
-        <div className="container">
+        <div className="container1">
             <div className="hire">
                 <div className="hire-header">
                     Hire
@@ -31,28 +30,26 @@ function Home() {
                     Have job vacancies? Want to hire the perfect candidate for lending a hand towards your dream? Hire Interns & Freshers faster. Post your intern requirements and build your dream team with ease.
                 </div>
                 <div className="button-container">
-                    <a href="login.html"><button className="hire-button">Sign up as employer</button></a>
+                <Link to={'/employerlogin'}><button className="hire-button">Sign up as employer</button></Link>
                 </div>
             </div>
-            <img src={hire1}/>
+            <img src={hire1} className='image1'/>
         </div>
-        
-        <div class="container">
-            <img src={hire2}/>
-            <div class="hire">
-                <div class="hire-header">
+        <div className="container1">
+            <img src={hire2} className='image2'/>
+            <div className="hire">
+                <div className="hire-header">
                     Get Hired
                 </div>
-                <div class="hire-text">
+                <div className="hire-text">
                     Want to put your potential to work? Find the right job or internshipfor you to shine your skills. Post your job profile and explore the industry through our network. Let the right people know you are open to work.
                 </div>
-                <div class="button-container">
-                    <Link to={'/employeelogin'}><button class="hire-button">Sign up as employee</button></Link>
-                    {/* <a href="login.html"></a> */}
+                <div className="button-container">
+                    <Link to={'/employeelogin'}><button className="hire-button">Sign up as employee</button></Link>
                 </div>
             </div>
         </div>
-      </>
+    </>
     );
 }
 
